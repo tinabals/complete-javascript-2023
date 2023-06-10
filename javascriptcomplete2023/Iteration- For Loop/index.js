@@ -63,3 +63,19 @@ for (let exercise = 1; exercise < 4; exercise++){
     //the first console is excercise is 3 acted like a subheaading for the rep which is 5
     // exercise is read then the first 1-5rep... then goes to the outer loop.. then we go to the other loop whuch runs from 1-5 again. so excercise controls the loop. the inner loop runs 5 times 3 times
 }
+
+
+//while loop
+let rep = 4;
+while(rep <= 10){
+    console.log(`lifting weight rep ${rep}`)
+    rep++
+}
+
+let dice = Math.trunc(Math.random() * 6) + 1
+console.log(dice, 'befor loop')
+ while(dice !== 6){
+     console.log(`You rolled a ${dice}` )
+     dice = Math.trunc(Math.random()*6) + 1
+     console.log(dice, 'after loop')
+ }
