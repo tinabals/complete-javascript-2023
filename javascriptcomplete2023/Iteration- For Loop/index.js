@@ -49,3 +49,17 @@ for(let i=0; i<damilola.length; i++){
     if(typeof damilola[i] === 'number') break;
     console.log(damilola[i], typeof damilola[i], "break")
 }
+//baclward and loop in loops
+
+for(let i= damilola.length -1; i>=0; i--){
+    console.log(damilola[i], i)
+}
+
+for (let exercise = 1; exercise < 4; exercise++){
+    console.log(`-----starting exercise${exercise}`)
+    for (let rep=1; rep<6; rep++){
+        console.log(`Excercise ${exercise} lifting weight repition ${rep}`)
+    }
+    //the first console is excercise is 3 acted like a subheaading for the rep which is 5
+    // exercise is read then the first 1-5rep... then goes to the outer loop.. then we go to the other loop whuch runs from 1-5 again. so excercise controls the loop. the inner loop runs 5 times 3 times
+}
