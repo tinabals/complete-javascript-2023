@@ -53,10 +53,53 @@ const array3 = array1.concat(array2);
 
 console.log(array3);
 // Expected output: Array ["a", "b", "c", "d", "e", "f"]
-const calcTempAmplitudeNew = function(temps1,temps2){
+// const calcTempAmplitudeNew = function(temps1,temps2){
+//     const temps = temps1.concat(temps2)
+//     let max = temps[0]
+//     let min = temps[0] // the first element in the array
+//     for(let i=0; i < temps.length; i++){
+//         const currentTemp = temps[i]
+//        if(typeof currentTemp !== 'number')continue;
+//        if(currentTemp > max){
+//         max = currentTemp
+//         }
+//         if (currentTemp < min){
+//             min = currentTemp
+//         }
+//      }
+//    return max - min
+// }
+
+// console.log(calcTempAmplitudeNew([3,5,1],[9,0,5]))
+// const amplitudeNew = (calcTempAmplitudeNew(temperature))
+// console.log(amplitude)
+
+
+const measureKelvin = function(){
+    const measurements = {
+        type:'temp',
+        unit : 'celsius',
+        // value : prompt('Degree celsius : ') //conver to a number
+        // value : Number(prompt('Degree celsius : '))
+        value : 10
+
+    }
+    // console.warn(measurements.value)
+    // console.error(measurements.value)
+console.log(measurements) ///prompts always return a spring
+console.table(measurements) ///prompts always return a spring
+    console.log(measurements.value)
+    const kelvin =  measurements.value + 273
+    return kelvin
+}
+//Identify the bug
+console.log(measureKelvin())
+
+//using a debugger
+const calcTempAmplitudeNewBug = function(temps1,temps2){
     const temps = temps1.concat(temps2)
-    let max = temps[0]
-    let min = temps[0] // the first element in the array
+    let max = 0
+    let min = 0// the first element in the array
     for(let i=0; i < temps.length; i++){
         const currentTemp = temps[i]
        if(typeof currentTemp !== 'number')continue;
@@ -70,6 +113,5 @@ const calcTempAmplitudeNew = function(temps1,temps2){
    return max - min
 }
 
-console.log(calcTempAmplitudeNew([3,5,1],[9,0,5]))
-// const amplitudeNew = (calcTempAmplitudeNew(temperature))
-// console.log(amplitude)
+const amplitudeBug = calcTempAmplitudeNewBug([3,5,1],[9,4,5])
+console.log(amplitudeBug)
