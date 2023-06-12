@@ -8,18 +8,18 @@ const calcTip = function (bill) {
   let totals=[]
   let tips = []
   
-  for(let totalBill = 0; totalBill <= bills.length; totalBill++){
-     tips.push( calcTip(bills[totalBill]))
-     console.log(tips)
-     totals.push(tips[totalBill] + bills[totalBill])
-     console.log(totals)
-  }
+  for(let i = 0; i <= bills.length; i++){
+    const tip = calcTip(bills[i])
+     tips.push( tip)
+     totals.push(tip + bills[i])
+    }
+    console.log(bills,totals,tips )
   
   const calcAverage = (arr) => {
       let sum = 0;
-      for(i=0; i<arr.length; i++){
-          (sum += arr[i])
-          console.log(sum, 'sum')
+      for(let i=0; i<arr.length; i++){
+        sum += arr[i]
+         
       }
       return sum/arr.length
   }
