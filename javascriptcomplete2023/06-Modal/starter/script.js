@@ -23,3 +23,15 @@ btnCloseModal.addEventListener
     ('click', closeModal
   )
 overlay.addEventListener('click', closeModal)
+
+
+//key up...when you lift your finger from the key
+//keydown when you fire the key
+//key prees when you press thr key down continually
+
+document.addEventListener('keydown', function(e){
+    console.log('a key was pressed', e.key)
+    if(e.key === 'Escape' && !modal.classList.contains('hidden')){
+        closeModal()
+    }
+})
