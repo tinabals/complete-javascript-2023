@@ -31,6 +31,10 @@ const restaurant = {
   },
   orderDelivery : function({starterIndex=1,mainIndex=0,time ='20:00',address='orlando owo'}){
     console.log(`orderReceived! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be dilivered to ${address} at ${time}  `)
+  }, 
+  orderPasta : function(ing1, ing2, ing3)
+  {
+     console.log(`here is your delicious meal ${ing1}, ${ing2} and ${ing3}`)
   }
 };
 
@@ -121,3 +125,53 @@ console.log(i,k,l)
 const [p=1,q=1,r=0] = [8,9]
 console.log(p,q,r)
 // r becomes 0
+
+
+
+//spread operator
+//we are writing new array simply by expanding an array and addig something else to it
+//it helps us get elements out of arrays
+const array = [7,8,9];
+
+const badNewArr = [1,2,array[0], array[1], array[2]]
+console.log(badNewArr)
+
+// const newArr = [1,2, ...array]
+const newArr = [ ...array, 1, 2]
+console.log(newArr)
+console.log(...newArr) // when you need the elements individually
+
+const newMenu = [...restaurant.mainMenu, 'Gnocci']
+console.log(...newMenu) 
+
+const mainMenuCopy = [...restaurant.mainMenu]
+
+//joining 2 arrays
+const menus = [...restaurant.starterMenu, ...restaurant.mainMenu]
+console.log(menus, "hii")
+
+//iterables : strings, arrays , maps, sets but not objects
+
+const str = 'Damilola'
+const letters = [...str, ' ', 's']
+console.log(letters) //they are now individual elements
+//spread used on only arrays or funcions
+
+
+//real world example
+// const ingredients = [prompt('Let\'s make pasta! ingredient 1'),
+//  prompt('Ingredient 2?'), 
+//  prompt('ingredient 3?')]
+// console.log(ingredients)
+// restaurant.orderPasta(...ingredients)
+
+
+//onjects
+const newRestaunrant = {foundingYear : 2023,...restaurant, founder: 'Dami'}
+
+console.log(newRestaunrant)
+
+
+const restaurantCopy = {...restaurant}
+restaurantCopy.name = 'Ristorante narma'
+console.log(restaurantCopy.name, restaurant.name)
