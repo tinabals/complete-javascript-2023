@@ -237,3 +237,13 @@ restaurant.orderPizza('mushroom')
 // rest ...variables seperated by comma
 
 
+//Short circuiting
+
+console.log(3 || 'Jonas') //if the first value is a truthy value... t would return the truthy value..it ont even evaluate the other value
+console.log('' || 'Jonas')
+console.log(true || 0)
+console.log(undefined || null)
+
+console.log(undefined || 0 || ' '|| 'hello'|| 23 || null)
+
+// udefined, 0, null  is falsy
