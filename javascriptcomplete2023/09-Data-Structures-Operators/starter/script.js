@@ -183,7 +183,7 @@ console.log(restaurantCopy.name, restaurant.name)
 
 // it packs elements into an array 
 
-
+//Destructuring
 //SPREAD because of right side of assingment
 const arrRest = [1,2,...[3,4]]
 console.log(arrRest)
@@ -200,3 +200,24 @@ console.log(pizza, Risotto, otherFood)
 // it should always be the last in the assignment
 // const [, ...otherFood, pizza, , Risotto] = [...restaurant.mainMenu,...restaurant.starterMenu] 
 //dont do the above
+
+//objects
+
+const {sat, ...weekDsys} = restaurant.openingHours
+console.log(sat, weekDsys)
+//it has to be the same of the variable
+
+
+//functions: rest arguments
+const add = function(...numbers){
+let sum = 0;
+for(let i=0; i< numbers.length; i++){
+  let num = numbers[i]
+  sum += num
+}
+  return sum
+}
+
+console.log(add(2,5))
+console.log(add(2,3))
+console.log(add(8,2,7))
