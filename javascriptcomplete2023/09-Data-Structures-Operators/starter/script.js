@@ -167,6 +167,7 @@ console.log(letters) //they are now individual elements
 
 
 //onjects
+
 const newRestaunrant = {foundingYear : 2023,...restaurant, founder: 'Dami'}
 
 console.log(newRestaunrant)
@@ -175,3 +176,27 @@ console.log(newRestaunrant)
 const restaurantCopy = {...restaurant}
 restaurantCopy.name = 'Ristorante narma'
 console.log(restaurantCopy.name, restaurant.name)
+
+
+//rest pattern
+// does the opp spread
+
+// it packs elements into an array 
+
+
+//SPREAD because of right side of assingment
+const arrRest = [1,2,...[3,4]]
+console.log(arrRest)
+
+//REST  because of left side of assignment
+
+const [c,d, ...others] = [1,2,3,4,5]
+console.log(c,d, others)//it takes the rest of the array and puts them in anither array
+
+// const ['pizza, , 'Risotto'] = [...restaurant.mainMenu,...restaurant.starterMenu] 
+const [pizza, , Risotto, ...otherFood] = [...restaurant.mainMenu,...restaurant.starterMenu] 
+//the left are variables
+console.log(pizza, Risotto, otherFood)
+// it should always be the last in the assignment
+// const [, ...otherFood, pizza, , Risotto] = [...restaurant.mainMenu,...restaurant.starterMenu] 
+//dont do the above
