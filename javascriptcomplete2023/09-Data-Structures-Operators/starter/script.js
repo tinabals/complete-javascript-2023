@@ -35,6 +35,9 @@ const restaurant = {
   orderPasta : function(ing1, ing2, ing3)
   {
      console.log(`here is your delicious meal ${ing1}, ${ing2} and ${ing3}`)
+  },
+  orderPizza : function(mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient, otherIngredients)
   }
 };
 
@@ -215,9 +218,22 @@ for(let i=0; i< numbers.length; i++){
   let num = numbers[i]
   sum += num
 }
+console.log(sum)
   return sum
 }
 
-console.log(add(2,5))
-console.log(add(2,3))
-console.log(add(8,2,7))
+add(2,5)
+add(2,3)
+add(8,2,7)
+
+const xArray= [2,7,9]
+add(...xArray)
+
+restaurant.orderPizza('mushroom','onion', 'spinach', 'melon', 'beans')
+restaurant.orderPizza('mushroom')
+
+
+// spred ...values seperated by commas
+// rest ...variables seperated by comma
+
+
