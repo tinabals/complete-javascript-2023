@@ -238,6 +238,7 @@ restaurant.orderPizza('mushroom')
 
 
 //Short circuiting
+console.log('=====OR=====')
 
 console.log(3 || 'Jonas') //if the first value is a truthy value... t would return the truthy value..it ont even evaluate the other value
 console.log('' || 'Jonas')
@@ -247,3 +248,26 @@ console.log(undefined || null)
 console.log(undefined || 0 || ' '|| 'hello'|| 23 || null)
 
 // udefined, 0, null  is falsy
+restaurant.numGuests = 23 //if this is 0...it would be a falsy value..
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10
+
+console.log(guests1)
+
+const guests2 = restaurant.numGuests || 10
+console.log(guests2)
+
+
+console.log('=====AND=====')
+//it shortcircuits if the first value is falsy. the evaluation continues and the last variable shows
+
+console.log(0 && 'Jonas') //returned 0 because 0 is falsy value
+console.log(7 && 'Jonas') // returns Jonas because 7 is a ttuthy value... it returns the last evaluated value 
+
+console.log('Hello' && 23 && null && 'Jonas') // it returns null...the last truthy calue was 23
+
+//practical example
+if (restaurant.orderPizza){
+  restaurant.orderPizza('Mushroom')
+}
+
+restaurant.orderPizza && restaurant.orderPizza('Pizza', 'Mushroom')
