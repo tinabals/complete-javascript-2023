@@ -253,8 +253,8 @@ const guests1 = restaurant.numGuests ? restaurant.numGuests : 10
 
 console.log(guests1)
 
-const guests2 = restaurant.numGuests || 10
-console.log(guests2)
+// const guests2 = restaurant.numGuests || 10
+// console.log(guests2)
 
 
 console.log('=====AND=====')
@@ -271,3 +271,14 @@ if (restaurant.orderPizza){
 }
 
 restaurant.orderPizza && restaurant.orderPizza('Pizza', 'Mushroom')
+
+
+// nullish oprator
+restaurant.numGuests = 0
+const guests = restaurant.numGuests || 10
+console.log(guests) 
+
+const guestCorrect = restaurant.numGuests ?? 10
+console.log(guestCorrect)
+//it deals with null, empty amd undefined values
+
