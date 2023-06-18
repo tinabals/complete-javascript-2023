@@ -286,7 +286,7 @@ console.log(guestCorrect)
 
 const rest1 = {
   name : 'Capri',
-  numGuests : 28
+  numGuests : 0
 }
 
 const rest2 = {
@@ -301,6 +301,12 @@ rest2.numGuests = rest2.numGuests || 10
 
 
 //OR ASSIGNMENT VARIABLE
-rest1.numGuests ||= 10
-rest2.numGuests ||= 10
+// rest1.numGuests ||= 10
+// rest2.numGuests ||= 10
+// console.log(rest2.numGuests, rest1.numGuests)
+
+//Logical Nullish Assignment Operator
+
+rest1.numGuests ??= 10
+rest2.numGuests ??= 10
 console.log(rest2.numGuests, rest1.numGuests)
