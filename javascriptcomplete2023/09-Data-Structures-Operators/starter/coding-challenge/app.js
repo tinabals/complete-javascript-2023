@@ -110,3 +110,30 @@ team1 > team2 && console.log('Team2 is likely to win')
 
 
 
+const scoredGames = [...game.scored]
+console.log(scoredGames)
+
+for(const [index ,goalScorer] of scoredGames.entries()){ //entries gives us the index
+  
+  console.log(`Goal ${index + 1}  : ${goalScorer}`)
+}
+
+const calcAvg = function(entry){
+  let sum = 0
+  const odds = Object.values(entry)
+  for (const value of odds){
+    sum += value
+   }
+    return Math.trunc(sum / odds.length)
+}
+
+
+const result = calcAvg(game.odds)
+console.log(result)
+
+
+for( const [team, odd] of Object.entries(game.odds)){
+  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`
+  // console.log(team,odd)
+  console.log(  `Odd of ${teamStr} ${odd}`)
+}
