@@ -1,4 +1,43 @@
 'use strict';
+//Enhanced Onject Literals
+
+
+//
+
+const weekdays = ['mon', 'Tues','Wed', 'Thurs', 'Fri','Sat']
+
+//before
+// const openingHours = {
+//   thu: {
+//     open: 12,
+//     close: 22,
+//   },
+//   fri: {
+//     open: 11,
+//     close: 23,
+//   },
+//   sat: {
+//     open: 0, // Open 24 hours
+//     close: 24,
+//   }
+// };
+//After computing which is a new computing
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  }
+};
+
+
 
 // Data needed for a later exercise
 const flights =
@@ -11,21 +50,9 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+  openingHours,
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  
   order : function(starterIndex, mainIndex){
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
   },
@@ -36,18 +63,59 @@ const restaurant = {
   {
      console.log(`here is your delicious meal ${ing1}, ${ing2} and ${ing3}`)
   },
-  orderPizza : function(mainIngredient, ...otherIngredients) {
+
+  //FORMER WAY OF WRITING METHODS
+  // orderPizza : function(mainIngredient, ...otherIngredients) {
+  //   console.log(mainIngredient, otherIngredients)
+  // }
+
+  //NEW WAY OF WIRITING METHODS
+  orderPizza(mainIngredient, ...otherIngredients) {
     console.log(mainIngredient, otherIngredients)
   }
 };
 
+
+console.log(restaurant)
 //DEstructuring onjects
 //we use {} and then the matching property names
 
-const {name,openingHours,categories} = restaurant
-console.log(name,openingHours,categories)
+// const {name,openingHours,categories}  = restaurant
+// console.log(name,openingHours,categories)
 
 //when you want the variable names to be different from the propertynames
+
+
+
+
+//optional Chaining
+//without
+
+if(restaurant.openingHours && restaurant.openingHours.mon){
+  console.log(restaunrant.openingHours.mon.open, "we dey open")
+}
+
+//with 
+// console.log(restaurant.openingHours.mon.open)
+console.log(restaurant.openingHours.mon?.open)
+ 
+//further example
+const days = ['Mon', 'Tue','Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
+
+for(const day of days){
+  console.log(day, 'each')
+ const exist = restaurant.openingHours[day]?.open ?? 'closed'
+ console.log(exist)
+}
+
+
+
+
+
+
+
+
+
 
 const {name: restaurantName, openingHours:hours, categories:tags} = restaurant
 console.log(restaurantName,hours,tags)
@@ -323,3 +391,19 @@ console.log(rest2.numGuests, rest1.numGuests)
 rest2.owner  &&=  '<ANONYMOUS>' 
 rest1.owner  &&=  '<ANONYMOUS>' 
 console.log(rest1.owner, rest2.owner)
+
+
+
+//ForOfLoop
+
+const menuD =[...restaurant.starterMenu, ...restaurant.mainMenu]
+for (const item of menuD){
+    console.log(item, 'items')
+}
+
+for ( const  [i, el] of menuD.entries()){
+
+  console.log(`${i +1} : ${el}`)
+}
+
+
