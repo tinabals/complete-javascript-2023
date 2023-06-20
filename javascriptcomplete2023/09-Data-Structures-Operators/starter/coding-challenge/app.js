@@ -137,3 +137,6 @@ for( const [team, odd] of Object.entries(game.odds)){
   // console.log(team,odd)
   console.log(  `Odd of ${teamStr} ${odd}`)
 }
+
+
+

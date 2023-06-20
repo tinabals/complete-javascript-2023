@@ -433,3 +433,36 @@ for ( const  [i, el] of menuD.entries()){
 }
 
 
+
+//Set : They are unique
+const orderSet = new Set (['pasta', 'Pizza', 'Pizza', 'Rissoto', 'pasta'])
+console.log(orderSet) //all the duplicates are gone
+
+console.log(new Set('Damilola'))
+console.log(orderSet.size)
+
+console.log(orderSet.has('Dami'))
+console.log(orderSet.has('Pizza')) // similiar to include for array
+
+
+//to add item to set
+orderSet.add('Migroo')
+orderSet.add('Migroo')
+orderSet.delete('Rissoto')
+// orderSet.clear() //To delete
+console.log(orderSet)
+
+
+//you cant get values or retrieve values from a set. just use an array instead
+
+
+for(const order of orderSet){
+  console.log(order)
+}
+
+//Example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']
+const staffUnique = [...new Set(staff)]
+console.log(staffUnique)
+
+
