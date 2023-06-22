@@ -466,3 +466,42 @@ const staffUnique = [...new Set(staff)]
 console.log(staffUnique)
 
 
+//Maps
+// they are used to map val` ues to keys.... the keys can have any type of key...objects, arrays etc
+
+const rest = new Map()
+rest.set('name', 'Tina\'s')
+rest.set(1,'Nigeria, lola\'s')
+rest.set(2,'Korea')
+console.log(rest)
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open')
+  .set(false, 'We are Close')
+
+
+
+  console.log(rest.get('name'))
+  console.log(rest.get(true))
+
+  const time = 21
+console.log(time> rest.get('open') && time < rest.get('close'))
+
+console.log(rest.has('categories'))
+rest.delete(2)
+console.log(rest)
+console.log(rest.size)
+// rest.clear()
+
+const arrr = [1,2]
+
+rest.set(arrr, 'Hello')
+console.log(rest, 'rest')
+
+//maps iteration
+
+const question = new Map(['question', 'What is the programming language in the world'], [1, 'C'], [2,'Java'], [3,'Javascript'], ['correct', 3], [true, 'Correct😊'], [false, 'Try again'])
+console.log(question)
