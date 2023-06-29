@@ -40,8 +40,6 @@ const openingHours = {
 
 
 // Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
 // Data needed for first part of the section
 const restaurant = {
@@ -622,3 +620,103 @@ const checkBaggage  = function(item){
 checkBaggage('I have a laptop, some food and a pocket knife')
 checkBaggage('Socks and Camera')
 checkBaggage('Got some snacks and a gun for correction')
+
+
+
+//SPLIT METHOD
+console.log('a+very+nice+string'.split('+'))
+console.log('Damilola Balogun'.split(' '))
+
+const [firstName,lasName] = 'Damilola Balogun'.split(' ')
+
+
+const splitNamePractice = function(name){
+  const namesArray = []
+    const names =  name.split(' ')
+     for(const n of names){
+    // namesArray.push(n[0].toUpperCase() + n.slice(1))
+    namesArray.push(n[0].replace(n[0], n[0].toUpperCase()) + n.slice(1))
+     }
+  console.log(namesArray.join(' '))
+}
+
+splitNamePractice('balogun damilola feyisayo')
+
+
+
+//padding
+const message = 'Go to gate 23!'
+
+console.log(message.padStart(25, '+').padEnd(30, '+'))
+console.log(message)
+
+
+const maskCreditCard = function(number){
+    const str = number + ' ' //converts the number to a string just like String(number)
+    const last = str.slice(-4)
+    console.log(last, str.length)
+    return last.padStart(str.length, '*')
+
+}
+
+console.log(maskCreditCard(5199110742229948))
+console.log(maskCreditCard('900908765998'))
+
+
+//repeat
+
+const message2 = 'Bad weather...All Departures DElayed... '
+console.log(message2.repeat(5))
+
+
+const planesInLine = function(n){
+  console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`)
+}
+
+planesInLine(10)
+planesInLine(5)
+planesInLine(20)
+
+
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n')
+  // console.log(rows)
+ 
+  for(const[i, row] of rows.entries()){
+  const [first,second] = row.toLowerCase().trim().split('_')
+  // console.log(first,second)
+  const output = `${first}${second.replace(second[0] , second[0].toUpperCase())}`
+  console.log(`${output.padEnd(20, " ")}${'✅'.repeat(i+ 1)}`)
+ 
+
+  }
+})
+
+
+
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+//  console.log(flights.split('+'))
+
+
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
+
+ for (const flight of flights.split('+')){
+  
+    const [type, from, to, time] = flight.split(';');
+    
+    // console.log(type,from, to, time)
+    const output = `${type.startsWith('_Delayed')? '🛑' : ''} ${type.replaceAll('_', ' ').trim()} from ${from.slice(0,3).toUpperCase()} to ${to.slice(0,3).toUpperCase()} (${time.replace(':', 'h')})`
+    console.log(output)
+      // console.log(flight)
+      // console.log(flight.replaceAll(';', ' ').replaceAll('_', ' ').trim())
+      // console.log(flight.slice(0))
+ }
