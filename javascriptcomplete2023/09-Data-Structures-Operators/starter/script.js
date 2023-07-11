@@ -710,13 +710,9 @@ const flights =
 //            Departure from FAO to LIS (12h30)
 
  for (const flight of flights.split('+')){
-  
-    const [type, from, to, time] = flight.split(';');
-    
-    // console.log(type,from, to, time)
-    const output = `${type.startsWith('_Delayed')? '🛑' : ''} ${type.replaceAll('_', ' ').trim()} from ${from.slice(0,3).toUpperCase()} to ${to.slice(0,3).toUpperCase()} (${time.replace(':', 'h')})`
+  const splitted = flight.split(';');
+  const [type, from, to, time] = splitted
+  const getCode = str => str.slice(0,3).toUpperCase()
+  const output = `${type.startsWith('_Delayed')? '🛑' : ''} ${type.replaceAll('_', ' ').trim()} from ${getCode(from)} to ${getCode(to)} (${time.replace(':', 'h')})`
     console.log(output)
-      // console.log(flight)
-      // console.log(flight.replaceAll(';', ' ').replaceAll('_', ' ').trim())
-      // console.log(flight.slice(0))
  }
