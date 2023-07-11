@@ -126,20 +126,40 @@ arr.at(-1)
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-for(const movement of movements){
-  if(movement > 0){
-    console.log(`You deposited ${movement} `)
-  }else{
-    console.log(`You withdrew ${movement}`)
-  }
-}
+// for(const movement of movements){
+//   if(movement > 0){
+//     console.log(`You deposited ${movement} `)
+//   }else{
+//     console.log(`You withdrew ${movement}`)
+//   }
+// }
 
 console.log(' foreach')
 
-movements.forEach(function(movement){
+// movements.forEach(function(movement){
+//   if(movement > 0){
+//     console.log(`You deposited ${movement} `)
+//   }else{
+//     console.log(`You withdrew ${movement}`)
+//   }
+// })
+
+
+//another application
+
+for(const [i,movement] of movements.entries()){
   if(movement > 0){
-    console.log(`You deposited ${movement} `)
+    console.log(` Movement ${ i + 1 } You deposited ${movement} `)
   }else{
-    console.log(`You withdrew ${movement}`)
+    console.log(` Movemnt ${i + 1} You withdrew ${movement}`)
+  }
+}
+
+
+movements.forEach(function(movement, index,array){
+  if(movement > 0){
+    console.log(` Movement ${ index + 1 } You deposited ${movement} `)
+  }else{
+    console.log(` Movemnt ${index + 1} You withdrew ${movement}`)
   }
 })
