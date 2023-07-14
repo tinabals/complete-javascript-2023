@@ -67,9 +67,10 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 
 
-const displayMovement =  function(movements){
+const displayMovement =  function(movements, sort=false){
   containerMovements.innerHTML = ''
-   movements.forEach(function(mov, i){
+  const movs = sort ? movements.slice().sort((a,b)=> a-b) : movements
+   movs.forEach(function(mov, i){
     const type = mov > 0 ? 'deposit' : 'withdrawal'
     const html = `
      <div class="movements__row">
@@ -118,13 +119,17 @@ const createUsernames = function(accs){
 createUsernames(accounts)
 
 
-const calcDisplayBalance = function(movements){
-  const balance = movements.reduce((acc, mov) => acc += mov,0)
-  labelBalance.textContent = `${balance}€` 
+const calcDisplayBalance = function(acc){
+  acc.balance = acc.movements.reduce((acc, mov) => acc += mov,0)
+  labelBalance.textContent = `${acc.balance}€` 
 }
 
 
-
+const updateUI = function(acc){
+  displayMovement(acc.movements)
+  calcDisplayBalance(acc)
+  calcDisplaySummary(acc)
+}
 
 
 
@@ -136,7 +141,7 @@ function(e){
   //using find method to locate the acount to work with
   currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value)
 
-  
+
   console.log(currentAccount)
   if(currentAccount.pin === Number(inputLoginPin.value))
   console.log('LOGIN')
@@ -147,13 +152,80 @@ function(e){
   //clear input fields
   inputLoginUsername.value = inputLoginPin.value = ''
   inputLoginPin.blur()
-  displayMovement(currentAccount.movements)
-  calcDisplayBalance(currentAccount.movements)
-  calcDisplaySummary(currentAccount)
+
+  //update UI
+  updateUI(currentAccount)
   })
 
 
+  btnTransfer.addEventListener('click', function(e){
+    e.preventDefault()
+    const amount = Number( inputTransferAmount.value)
+    const receiverAccount = accounts.find(account => account.username === inputTransferTo.value)
+    inputTransferAmount.value = inputTransferTo.value = ' '
+ 
+    if(amount > 0 &&
+       currentAccount.balance  >= amount && 
+       receiverAccount &&
+       receiverAccount?.username !== currentAccount.username){
+      currentAccount.movements.push(-amount)
+      receiverAccount.movements.push(amount)
 
+      updateUI(currentAccount)
+    }
+  })
+
+
+  btnClose.addEventListener('click', function(e){
+     e.preventDefault()
+     console.log('juuu')
+     if(inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === currentAccount.pin){
+       const index = accounts.findIndex(acc => acc.username === currentAccount.username)
+       console.log(index)
+       accounts.splice(index,1)
+       containerApp.style.opacity = 0
+       inputCloseUsername.value = inputClosePin.value = ''
+      }
+  })
+
+  btnLoan.addEventListener('click', function(e){
+    e.preventDefault()
+    const amount = Number(inputLoanAmount.value)
+    if(amount> 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+      currentAccount.movements.push(amount)
+      updateUI(currentAccount)
+      inputLoanAmount.value = ' '
+    }
+  })
+
+  let sorted = false
+  btnSort.addEventListener('click', function(e){
+    e.preventDefault()
+   
+   displayMovement(currentAccount.movements, !sorted)
+   sorted = !sorted
+  })
+
+  const accountMovements = accounts.map(acc => acc.movements)
+ const all = accountMovements.flat()
+  console.log(all)
+
+  // const overallBalance = all.reduce((acc, mov)=> acc + mov,0)
+  // console.log(overallBalance)
+
+
+  // const overallBalance = accounts
+  // .map(acc => acc.movements)
+  // .flat()
+  // .reduce((acc,mov)=> acc + mov, 0)
+
+  // console.log(overallBalance)
+
+
+  const overallBalance = accounts.flatMap(acc => acc.movements)
+  .reduce((acc,mov)=> acc + mov,0)
+  console.log(overallBalance)
+  // console.log(account4.movements.every(mov => mov > 0))
 
 // console.log(username)
 
@@ -523,3 +595,55 @@ console.log('---THE FIND METHOD---')
 //       console.log(objs,'mee')
 //     }
 // }
+
+console.log( '----FINDINDEX MNETHOD----')
+//This returns the index of the item found
+
+
+console.log('---FLAT METHOD---')
+
+const arr = [[1,2,3],[4,5,6],[7,8,0]]
+console.log(arr.flat())
+
+const arrDeep = [[[1,2,3],[4,[5,6]]],7,8,0]
+console.log(arrDeep.flat(3))
+
+
+
+console.log('----SORT METHOD---')
+//strings
+const owners = ['Dami', 'Fiso', 'Tunde', 'Kunle']
+console.log(owners.sort())
+
+//numbers
+// console.log(movements.sort())
+
+
+// return < 0 , A, B (keep order)
+// return > 0, B , A (switch order)
+//ascending
+movements.sort((a,b)=> {
+  b - a
+})
+console.log(movements)
+
+movements.sort((a,b)=> {
+  if (a> b)
+  return 1
+  if(b > a)
+  return -1
+})
+console.log(movements, 'ascending')
+//descending
+
+movements.sort((a,b)=> {
+  a-b
+})
+console.log(movements)
+movements.sort((a,b)=> {
+  if (a> b)
+  return -1
+  if(b> a)
+  return 1
+})
+console.log(movements)
