@@ -94,7 +94,7 @@ const displayMovements = function (movements, sort = false) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
 
@@ -104,19 +104,19 @@ const displayMovements = function (movements, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -126,7 +126,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
 
 const createUsernames = function (accs) {
@@ -164,7 +164,7 @@ btnLogin.addEventListener('click', function (e) {
   );
   console.log(currentAccount);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
@@ -182,7 +182,7 @@ btnLogin.addEventListener('click', function (e) {
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
-  const amount = Number(inputTransferAmount.value);
+  const amount = +inputTransferAmount.value;
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
@@ -206,7 +206,7 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value);
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -223,7 +223,7 @@ btnClose.addEventListener('click', function (e) {
 
   if (
     inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAccount.pin
   ) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
@@ -251,3 +251,146 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+// console.log(23 === 23.0)
+// console.log(0.1 + 0.2)
+
+// console.log(0.1 + 0.2 === 0.3)
+
+
+// console.log('convert strings to Numbers')
+// console.log(Number('23'))
+
+// console.log(+'23')
+
+
+// console.log('Parsing')
+// console.log(Number.parseInt('20px'))
+// console.log(Number.parseInt('e90'))
+
+
+// console.log(Number.parseFloat('2.5rem'))
+// console.log(Number.parseInt('2.5rem'))
+
+
+// console.log(Number.isNaN(20))
+// console.log(Number.isNaN('20'))
+// console.log(Number.isNaN(+'22X'))
+// console.log(Number.isNaN(23/0 ))
+
+
+
+// console.log('---REMAINDER -----')
+
+// console.log(5 % 2)
+// console.log(5/2)
+
+// console.log(6 % 2)
+
+// const isEven = n => n % 2 === 0
+// console.log(isEven(9))
+// console.log(isEven(6))
+
+// labelBalance.addEventListener('click', function(){
+//   [...document.querySelectorAll('.movements__row')]
+//   .forEach((row,i) => {
+//     if(i % 2 === 0) 
+//     return row.style.backgroundColor = 'orangered'
+//     if(i % 3 === 0){
+//       return row.style.backgroundColor = 'blue'
+//     }
+//     }
+//     )
+// })
+
+// console.log(Math.sqrt(25))
+// console.log(25 ** (1/2)) //exponiation operator
+// console.log(8 ** (1/3)) //exponiation operator
+
+
+// console.log(Math.max(5,13,89,40,10))
+// console.log(Math.max(5,18,'23',11,2))
+// console.log(Math.max(5,13,'89px',40,10))
+
+
+// console.log(Math.min(5,13,89,40,10))
+// console.log(Math.min(5,18,'23',11,2))
+// console.log(Math.min(5,13,'89px',40,10))
+
+// console.log(Math.PI * Number.parseFloat('10px '))
+
+// const randomNo = Math.trunc(Math.random() * 6) + 1
+
+// console.log(randomNo,'random')
+
+// const generateRandomNum = function(min,max){
+//     return Math.floor(Math.random() * (max-min  )  +  1) + min
+// } 
+
+// console.log(generateRandomNum(10, 20 ))
+                                                                        
+
+// console.log('---  ROUNDING INTEGERS----')
+// console.log(Math.trunc(23.3))
+
+
+// console.log('round')
+// console.log(Math.round(23.3))
+// console.log(Math.round(23.9))
+
+// console.log('ceil')
+
+// console.log(Math.ceil(23.3))
+// console.log(Math.ceil(23.9))
+
+
+// console.log('florr')
+
+// console.log(Math.floor(23.3))
+// console.log(Math.floor(23.9))
+
+// console.log( 'floor and truc dealing with negative numbers')
+// console.log(Math.floor(-23.3))
+// console.log(Math.trunc(-23.3))
+
+
+// console.log('---rounding decimals----')
+
+// console.log((2.7).toFixed(0))
+// console.log((2.7).toFixed(3))
+// console.log((2.7).toFixed(1))
+// console.log(+(2.7899).toFixed(3))
+
+
+
+console.log('Numeric Seperators')
+
+const diameter = 287_460_000_000
+console.log(diameter)
+
+const priceCents = 345_99
+console.log(priceCents)
+
+const transferFee = 15_00
+const transferFee2 = 1_500
+
+const PI = 3.14_15
+console.log(PI)
+
+
+console.log(Number('200_00'))
+
+
+
+console.log('---BIGINT---')
+
+console.log(2 ** 53 -1)
+console.log(Number.MAX_SAFE_INTEGER)
+
+
+console.log(488888888890002067783898389993n)
+console.log(BigInt(48888888003))
+
+
+console.log('CREATING DATES')
+
